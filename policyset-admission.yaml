@@ -1,0 +1,11 @@
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: PolicySet
+metadata:
+  name: admission
+  namespace: ocbc-policies
+spec:
+  description: "OCBC Admission Control"
+  policies:
+  - ocbc-admission
+  - ocbc-admission-no-resource-limits
+  - ocbc-cluster-delete-protection

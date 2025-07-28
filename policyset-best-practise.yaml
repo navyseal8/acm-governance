@@ -1,0 +1,9 @@
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: PolicySet
+metadata:
+  name: best-practise
+  namespace: ocbc-policies
+spec:
+  description: OCBC Best Practise
+  policies:
+  - ocbc-admission-no-resource-limits

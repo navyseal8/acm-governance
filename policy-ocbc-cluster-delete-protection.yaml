@@ -1,0 +1,64 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: OCBC Hosted Control Plane Configuration Management
+    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
+    policy.open-cluster-management.io/description: Protect deletion
+    policy.open-cluster-management.io/standards: NIST SP 800-53
+  name: ocbc-cluster-delete-protection
+  namespace: ocbc-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: templates.gatekeeper.sh/v1beta1
+      kind: ConstraintTemplate
+      metadata:
+        name: managedclusterdeletionlabelcheck
+      spec:
+        crd:
+          spec:
+            names:
+              kind: ManagedClusterDeletionLabelCheck
+        targets:
+        - rego: |
+            package managedclusterdeletionlabelcheck
+            violation[{"msg": msg}] {
+              input.review.kind.kind == "Pod"
+              input.review.operation == "DELETE"
+
+              # DELETE requests set object to null; we use oldObject
+              resource := input.review.oldObject
+
+              not resource.metadata.labels["allow-delete"]
+              msg := sprintf("Pod '%v/%v' deletion blocked: missing label allow-delete=true", [resource.metadata.namespace, resource.metadata.name])
+            }
+            violation[{"msg": msg}] {
+              input.review.kind.kind == "Pod"
+              input.review.operation == "DELETE"
+
+              resource := input.review.oldObject
+
+              resource.metadata.labels["allow-delete"] != "true"
+              msg := sprintf("Pod '%v/%v' deletion blocked: label allow-delete must equal 'true'", [resource.metadata.namespace, resource.metadata.name])
+            }
+          target: admission.k8s.gatekeeper.sh
+  - objectDefinition:
+      apiVersion: constraints.gatekeeper.sh/v1beta1
+      kind: ManagedClusterDeletionLabelCheck
+      metadata:
+        name: prevent-managedcluster-delete-without-label
+      spec:
+        match:
+          excludedNamespaces:
+          - default
+          - kube-system
+          - openshift-*
+          - open-cluster-management-*
+          kinds:
+          - apiGroups:
+            - ""
+            kinds:
+            - Pod
+  remediationAction: enforce

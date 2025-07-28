@@ -1,0 +1,30 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: ""
+    policy.open-cluster-management.io/controls: ""
+    policy.open-cluster-management.io/standards: ""
+  name: ocbc-operator-aws-efs
+  namespace: ocbc-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1beta1
+      kind: OperatorPolicy
+      metadata:
+        name: install-operator-aws-efs
+      spec:
+        complianceType: musthave
+        remediationAction: enforce
+        severity: critical
+        subscription:
+          channel: stable
+          name: aws-efs-operator
+          namespace: openshift-operators
+          source: community-operators
+          sourceNamespace: openshift-marketplace
+          startingCSV: aws-efs-operator.v0.0.8
+        upgradeApproval: Automatic
+        versions: null

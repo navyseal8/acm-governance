@@ -1,0 +1,46 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  annotations:
+    policy.open-cluster-management.io/categories: ""
+    policy.open-cluster-management.io/controls: ""
+    policy.open-cluster-management.io/description: must-have-operators
+    policy.open-cluster-management.io/standards: ""
+  name: ocbc-operator-gitops
+  namespace: ocbc-policies
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: gitops-operator-ns
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            kind: Namespace
+            metadata:
+              name: openshift-gitops-operator
+        remediationAction: inform
+        severity: high
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1beta1
+      kind: OperatorPolicy
+      metadata:
+        name: openshift-gitops-operator
+      spec:
+        complianceType: musthave
+        remediationAction: inform
+        severity: high
+        subscription:
+          channel: latest
+          name: openshift-gitops-operator
+          namespace: openshift-gitops-operator
+          source: redhat-operators
+          sourceNamespace: openshift-marketplace
+        upgradeApproval: Automatic
+        versions: []
+  remediationAction: enforce

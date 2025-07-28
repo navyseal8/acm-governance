@@ -1,0 +1,12 @@
+apiVersion: policy.open-cluster-management.io/v1beta1
+kind: PolicySet
+metadata:
+  name: operator
+  namespace: ocbc-policies
+spec:
+  description: OCBC mandatory operators
+  policies:
+  - ocbc-operator-aws-efs
+  - ocbc-operator-compliance
+  - ocbc-operator-gitops
+  - ocbc-operator-lso
