@@ -2,10 +2,10 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   annotations:
-    policy.open-cluster-management.io/categories: ""
-    policy.open-cluster-management.io/controls: ""
-    policy.open-cluster-management.io/description: must-have-operators
-    policy.open-cluster-management.io/standards: ""
+    policy.open-cluster-management.io/categories: OCBC Configuration Management
+    policy.open-cluster-management.io/controls: CM-1 Mandatory operators
+    policy.open-cluster-management.io/description: Install GitOps operator
+    policy.open-cluster-management.io/standards: NIST SP 800-53
   name: ocbc-operator-gitops
   namespace: ocbc-policies
 spec:

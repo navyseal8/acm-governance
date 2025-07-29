@@ -2,10 +2,10 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   annotations:
-    policy.open-cluster-management.io/categories: OCBC onfiguration Management
-    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
-    policy.open-cluster-management.io/description: must give labels when creating namespace
-    policy.open-cluster-management.io/standards: NIST SP 800-53
+    policy.open-cluster-management.io/categories: OCBC Configuration Management
+    policy.open-cluster-management.io/controls: CM-4 Cost Chargeback
+    policy.open-cluster-management.io/description: Must give labels when creating namespace
+    policy.open-cluster-management.io/standards: 
   name: ocbc-admission-namespace
   namespace: ocbc-policies
 spec:
@@ -42,7 +42,7 @@ spec:
       apiVersion: constraints.gatekeeper.sh/v1beta1
       kind: K8sRequiredLabels
       metadata:
-        name: ns-must-have-gk
+        name: ns-must-have-cost-center
       spec:
         enforcementAction: dryrun
         match:
@@ -53,5 +53,5 @@ spec:
             - Namespace
         parameters:
           labels:
-          - gatekeeper
+          - cost-center
   remediationAction: enforce

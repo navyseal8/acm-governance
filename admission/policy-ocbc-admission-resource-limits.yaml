@@ -2,10 +2,10 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   annotations:
-    policy.open-cluster-management.io/categories: CM Configuration Management
-    policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
-    policy.open-cluster-management.io/description: No resource limits, no talk
-    policy.open-cluster-management.io/standards: NIST SP 800-53
+    policy.open-cluster-management.io/categories: OCBC Multi-Tenancy
+    policy.open-cluster-management.io/controls: CM-3 Resource Management
+    policy.open-cluster-management.io/description: Cost Chargeback, Ownership, Quota
+    policy.open-cluster-management.io/standards: 
   name: ocbc-admission-no-resource-limits
   namespace: ocbc-policies
 spec:
@@ -53,7 +53,7 @@ spec:
       apiVersion: constraints.gatekeeper.sh/v1beta1
       kind: K8sRequiredResourceLimits
       metadata:
-        name: require-cpu-mem-limits
+        name: require-resource-limits
       spec:
         enforcementAction: enforce
         match:

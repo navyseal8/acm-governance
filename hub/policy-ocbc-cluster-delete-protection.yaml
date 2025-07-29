@@ -6,6 +6,11 @@ metadata:
     policy.open-cluster-management.io/controls: CM-2 Baseline Configuration
     policy.open-cluster-management.io/description: Protect deletion
     policy.open-cluster-management.io/standards: NIST SP 800-53
+
+    policy.open-cluster-management.io/categories: OCBC Security Assessment
+    policy.open-cluster-management.io/controls: SA-4 Runtime security
+    policy.open-cluster-management.io/description: Disable accidental deletion of managedCluster
+    policy.open-cluster-management.io/standards: NIST SP 800-53
   name: ocbc-cluster-delete-protection
   namespace: ocbc-policies
 spec:
