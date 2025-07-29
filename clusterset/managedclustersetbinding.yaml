@@ -1,0 +1,39 @@
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: by-dev
+  namespace: ocbc-policies
+spec:
+  clusterSet: by-dev
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: by-prod
+  namespace: ocbc-policies
+spec:
+  clusterSet: by-prod
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: division-retail
+  namespace: ocbc-policies
+spec:
+  clusterSet: division-retail
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: division-payment
+  namespace: ocbc-policies
+spec:
+  clusterSet: division-payment
+---
+apiVersion: cluster.open-cluster-management.io/v1beta2
+kind: ManagedClusterSetBinding
+metadata:
+  name: team-elastic
+  namespace: ocbc-policies
+spec:
+  clusterSet: team-elastic
