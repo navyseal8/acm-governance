@@ -36,7 +36,7 @@ spec:
         name: create-operatorgroup-lso
       spec:
         remediationAction: enforce
-        severity; low
+        severity: low
         object-templates:
         - complianceType: musthave
           objectDefinition:
