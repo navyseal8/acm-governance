@@ -26,6 +26,7 @@ spec:
           namespace: openshift-local-storage
           source: redhat-operators
           sourceNamespace: openshift-marketplace
+          installPlanApproval: Automatic
         upgradeApproval: Automatic
         versions: null
   - objectDefinition:
