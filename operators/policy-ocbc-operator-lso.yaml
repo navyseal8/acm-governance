@@ -26,7 +26,7 @@ spec:
           namespace: openshift-local-storage
           source: redhat-operators
           sourceNamespace: openshift-marketplace
-          startingCSV: local-storage-operator.v4.18.0
+          startingCSV: local-storage-operator.v4.18.0-202507211933
         upgradeApproval: Automatic
         versions: null
   - objectDefinition:
