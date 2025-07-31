@@ -33,6 +33,25 @@ spec:
       apiVersion: policy.open-cluster-management.io/v1
       kind: ConfigurationPolicy
       metadata:
+        name: create-operatorgroup-lso
+      spec:
+        remediationAction: enforce
+        severity; low
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1
+            kind: OperatorGroup
+            metadata:
+              name: local-storage-operator
+              namespace: openshift-local-storage
+            spec:
+              targetNamespaces:
+                - openshift-local-storage
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
         name: policy-namespace-lso
       spec:
         object-templates:
