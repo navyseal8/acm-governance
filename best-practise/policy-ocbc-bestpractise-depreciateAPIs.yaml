@@ -13,11 +13,11 @@ spec:
         metadata:
           name: deprecated-deployment-extensions-v1beta1
         spec:
-          remediationAction: inform
-          severity: high
           namespaceSelector:
             exclude: ["kube-*"]
             include: ["*"]
+          remediationAction: inform
+          severity: high
           object-templates-raw: |
             - complianceType: mustnothave
               objectDefinition:

@@ -25,4 +25,4 @@ spec:
               - default
               - openshift-ingress
           remediationAction: inform
-          severity: low
+          severity: high
