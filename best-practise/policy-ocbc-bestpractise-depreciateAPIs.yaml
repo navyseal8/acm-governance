@@ -14,7 +14,9 @@ spec:
           name: deprecated-deployment-extensions-v1beta1
         spec:
           namespaceSelector:
-            exclude: ["kube-*"]
+            exclude:
+              - kube-*
+              - openshift-*
             include: ["*"]
           remediationAction: inform
           severity: high
