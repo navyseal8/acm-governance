@@ -1,0 +1,26 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-ocbc-bestpractise-detect-depreciated-apis
+  namespace: policies
+spec:
+  disabled: false
+  remediationAction: inform # Do not change to 'enforce'
+  policy-templates:
+    - objectDefinition:
+        apiVersion: policy.open-cluster-management.io/v1
+        kind: ConfigurationPolicy
+        metadata:
+          name: deprecated-deployment-extensions-v1beta1
+        spec:
+          remediationAction: inform
+          severity: high
+          namespaceSelector:
+            exclude: ["kube-*"]
+            include: ["*"]
+          object-templates-raw: |
+            - complianceType: mustnothave
+              objectDefinition:
+                apiVersion: extensions/v1beta1
+                kind: Deployment
+  remediationAction: inform
