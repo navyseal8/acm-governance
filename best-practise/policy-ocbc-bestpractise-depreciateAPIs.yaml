@@ -2,7 +2,7 @@ apiVersion: policy.open-cluster-management.io/v1
 kind: Policy
 metadata:
   name: policy-ocbc-bestpractise-detect-depreciated-apis
-  namespace: policies
+  namespace: ocbc-policies
 spec:
   disabled: false
   remediationAction: inform # Do not change to 'enforce'
